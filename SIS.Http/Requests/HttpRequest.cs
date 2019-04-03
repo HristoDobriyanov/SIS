@@ -69,7 +69,13 @@ namespace SIS.Http.Requests
 
         private void ParseQueryParameters(string url)
         {
-            var queryParameters = this.Url?.Split(new[] { '?', '#' }).Skip(1);
+            var queryParameters = this.Url?
+                .Split(new[] { '?', '#' })
+                .Skip(1)
+                .Take(1)
+                .ToString();
+
+            var queryKeyValuePairs = queryParameters.Split('&', StringSplitOptions.RemoveEmptyEntries);
         }
 
         private void ParseHeaders(string[] requestHeaders)
