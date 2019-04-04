@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using SIS.Http.Common;
 using SIS.Http.Contracts;
@@ -24,6 +25,19 @@ namespace SIS.Http.Requests
             this.ParseRequest(requestString);
 
         }
+
+        public string Path { get; private set; }
+
+        public string Url { get; private set; }
+
+        public Dictionary<string, object> FormData { get; }
+
+        public Dictionary<string, object> QueryData { get; }
+
+        public IHttpHeaderCollection Headers { get; }
+
+        public HttpRequestMethod RequestMethod { get; private set; }
+
 
         private void ParseRequest(string requestString)
         {
@@ -64,7 +78,10 @@ namespace SIS.Http.Requests
 
         private void ParseFormDataParameters(string bodyParameters)
         {
-            throw new NotImplementedException();
+            var formDataKeyValuePairs = bodyParameters.Split('&', StringSplitOptions.RemoveEmptyEntries);
+
+
+            ExtractrRequestParameters(formDataKeyValuePairs, this.FormData);
         }
 
         private void ParseQueryParameters(string url)
@@ -75,7 +92,14 @@ namespace SIS.Http.Requests
                 .Take(1)
                 .ToString();
 
+            if (string.IsNullOrEmpty(queryParameters))
+            {
+                throw new BadRequestException();
+            }
+
             var queryKeyValuePairs = queryParameters.Split('&', StringSplitOptions.RemoveEmptyEntries);
+
+            ExtractrRequestParameters(queryKeyValuePairs, this.QueryData);
         }
 
         private void ParseHeaders(string[] requestHeaders)
@@ -153,18 +177,23 @@ namespace SIS.Http.Requests
             return false;
         }
 
+        private void ExtractrRequestParameters(string[] parameterKeyValuePairs,
+            Dictionary<string, object> parametersCollection)
+        {
+            foreach (var parametersKeyValuePair in parameterKeyValuePairs)
+            {
+                var keyValuePair = parametersKeyValuePair.Split("=", StringSplitOptions.RemoveEmptyEntries);
 
+                if (keyValuePair.Length != 2)
+                {
+                    throw new BadRequestException();
+                }
 
-        public string Path { get; private set; }
+                var parameterKey = keyValuePair[0];
+                var parapmeterValue = keyValuePair[1];
 
-        public string Url { get; private set; }
-
-        public Dictionary<string, object> FormData { get; }
-
-        public Dictionary<string, object> QueryData { get; }
-
-        public IHttpHeaderCollection Headers { get; }
-
-        public HttpRequestMethod RequestMethod { get; private set; }
+                parametersCollection[parameterKey] = parapmeterValue;
+            }
+        }
     }
 }
