@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIS.Http", "SIS.Http\SIS.Http.csproj", "{EB434464-EC1B-419D-A388-B2AB9550DA0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIS.Http", "SIS.Http\SIS.Http.csproj", "{EB434464-EC1B-419D-A388-B2AB9550DA0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIS.WebServer", "SIS.WebServer\SIS.WebServer.csproj", "{EAFEAD99-C51C-48FB-8A1F-C9044D0CFDDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EB434464-EC1B-419D-A388-B2AB9550DA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB434464-EC1B-419D-A388-B2AB9550DA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB434464-EC1B-419D-A388-B2AB9550DA0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAFEAD99-C51C-48FB-8A1F-C9044D0CFDDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAFEAD99-C51C-48FB-8A1F-C9044D0CFDDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAFEAD99-C51C-48FB-8A1F-C9044D0CFDDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAFEAD99-C51C-48FB-8A1F-C9044D0CFDDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

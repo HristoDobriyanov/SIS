@@ -13,7 +13,6 @@ namespace SIS.Http.Requests
 {
     public class HttpRequest : IHttpRequest
     {
-
         public HttpRequest(string requestString)
         {
             this.FormData = new Dictionary<string, object>();
