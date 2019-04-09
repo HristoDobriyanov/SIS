@@ -5,6 +5,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using SIS.Http.Common;
 using SIS.Http.Contracts;
+using SIS.Http.Cookies;
+using SIS.Http.Cookies.Contracts;
 using SIS.Http.Enum;
 using SIS.Http.Exceptions;
 using SIS.Http.Headers;
@@ -21,6 +23,8 @@ namespace SIS.Http.Requests
 
             this.Headers = new HttpHeadersCollection();
 
+            this.Cookies = new HttpCookieCollection();
+
             this.ParseRequest(requestString);
         }
 
@@ -33,6 +37,8 @@ namespace SIS.Http.Requests
         public Dictionary<string, object> QueryData { get; }
 
         public IHttpHeaderCollection Headers { get; }
+
+        public IHttpCookieCollection Cookies { get; }
 
         public HttpRequestMethod RequestMethod { get; private set; }
 
@@ -57,11 +63,14 @@ namespace SIS.Http.Requests
             this.ParseRequestPath(requestLine);
 
             this.ParseHeaders(splitRequestContent.Skip(1).ToArray());
+            this.ParseCookies();
             bool requestHasBody = splitRequestContent.Length > 1;
             this.ParseRequestParameters(splitRequestContent[splitRequestContent.Length - 1], requestHasBody);
+        }
 
-
-
+        private void ParseCookies()
+        {
+            throw new NotImplementedException();
         }
 
         private void ParseRequestParameters(string bodyParameters, bool requestHasBody)

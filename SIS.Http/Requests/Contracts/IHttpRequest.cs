@@ -3,6 +3,7 @@ using SIS.Http.Enum;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SIS.Http.Cookies.Contracts;
 
 namespace SIS.Http.Requests
 {
@@ -17,6 +18,8 @@ namespace SIS.Http.Requests
         Dictionary<string, object> QueryData { get; }
 
         IHttpHeaderCollection Headers { get; }
+
+        IHttpCookieCollection Cookies { get; }
 
         HttpRequestMethod RequestMethod { get; }
     }
