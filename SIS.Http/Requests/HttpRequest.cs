@@ -70,7 +70,29 @@ namespace SIS.Http.Requests
 
         private void ParseCookies()
         {
-            throw new NotImplementedException();
+            if (!this.Headers.ContainsHeader(GlobalConstants.CookieRequestHeaderName))
+            {
+                throw new NotImplementedException();
+            }
+
+            var cookiesRaw = this.Headers.GetHeader(GlobalConstants.CookieRequestHeaderName).Value;
+            var cookies = cookiesRaw.Split(", ", StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var rawCookie in cookies)
+            {
+                var cookieKeyValuePair = rawCookie.Split("=", 2);
+
+                if (cookieKeyValuePair.Length != GlobalConstants.MandatoryNumberOfParametersInRequestParameterKeyValuePair)
+                {
+                    throw new BadRequestException();
+                }
+
+                var cookieName = cookieKeyValuePair[0];
+                var cookieValue = cookieKeyValuePair[1];
+
+                this.Cookies.Add(new HttpCookie(cookieName, cookieValue));
+
+            }
         }
 
         private void ParseRequestParameters(string bodyParameters, bool requestHasBody)
@@ -194,7 +216,7 @@ namespace SIS.Http.Requests
             {
                 var keyValuePair = parametersKeyValuePair.Split("=", StringSplitOptions.RemoveEmptyEntries);
 
-                if (keyValuePair.Length != 2)
+                if (keyValuePair.Length != GlobalConstants.MandatoryNumberOfParametersInRequestParameterKeyValuePair)
                 {
                     throw new BadRequestException();
                 }

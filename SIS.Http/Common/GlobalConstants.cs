@@ -9,5 +9,12 @@ namespace SIS.Http.Common
         public const string HttpOneProtocolFragment = "HTTP/1.1";
 
         public const string HostHeaderString = "Host";
+
+        public const int MandatoryNumberOfParametersInRequestParameterKeyValuePair = 2;
+
+        public const string CookieRequestHeaderName = "Cookie";
+
+        public const string CookieResponseHeaderName = "Set-Cookie";
     }
+
 }
