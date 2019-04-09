@@ -22,7 +22,6 @@ namespace SIS.Http.Requests
             this.Headers = new HttpHeadersCollection();
 
             this.ParseRequest(requestString);
-
         }
 
         public string Path { get; private set; }

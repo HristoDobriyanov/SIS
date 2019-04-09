@@ -21,39 +21,6 @@ namespace SIS.WebServer
             this.serverRoutingTable = serverRoutingTable;
         }
 
-        public async Task ProcessRequestAsync()
-        {
-            var httpRequest = await this.ReadRequest();
-
-            if (httpRequest != null)
-            {
-                var httpResponse = this.HandleRequest(httpRequest);
-                await this.PrepareResponse(httpResponse);
-            }
-
-            this.client.Shutdown(SocketShutdown.Both);
-
-        }
-
-        private async Task PrepareResponse(IHttpResponse httpResponse)
-        {
-            byte[] byteSegments = httpResponse.GetBytes();
-
-            await this.client.SendAsync(byteSegments, SocketFlags.None);
-
-        }
-
-        private IHttpResponse HandleRequest(IHttpRequest httpRequest)
-        {
-            if (!this.serverRoutingTable.Routes.ContainsKey(httpRequest.RequestMethod)
-                || this.serverRoutingTable.Routes[httpRequest.RequestMethod].ContainsKey(httpRequest.Path))
-            {
-                return new HttpResponse(HttpStatusCode.NotFound);
-            }
-
-            return this.serverRoutingTable.Routes[httpRequest.RequestMethod][httpRequest.Path].Invoke(httpRequest);
-        }
-
         private async Task<IHttpRequest> ReadRequest()
         {
             var result = new StringBuilder();
@@ -85,6 +52,39 @@ namespace SIS.WebServer
             }
 
             return new HttpRequest(result.ToString());
+        }
+
+        private IHttpResponse HandleRequest(IHttpRequest httpRequest)
+        {
+            if (!this.serverRoutingTable.Routes.ContainsKey(httpRequest.RequestMethod)
+                || !this.serverRoutingTable.Routes[httpRequest.RequestMethod].ContainsKey(httpRequest.Path))
+            {
+                return new HttpResponse(HttpStatusCode.NotFound);
+            }
+
+            return this.serverRoutingTable.Routes[httpRequest.RequestMethod][httpRequest.Path].Invoke(httpRequest);
+        }
+
+        private async Task PrepareResponse(IHttpResponse httpResponse)
+        {
+            byte[] byteSegments = httpResponse.GetBytes();
+
+            await this.client.SendAsync(byteSegments, SocketFlags.None);
+
+        }
+
+        public async Task ProcessRequestAsync()
+        {
+            var httpRequest = await this.ReadRequest();
+
+            if (httpRequest != null)
+            {
+                var httpResponse = this.HandleRequest(httpRequest);
+                await this.PrepareResponse(httpResponse);
+            }
+
+            this.client.Shutdown(SocketShutdown.Both);
+
         }
     }
 }
