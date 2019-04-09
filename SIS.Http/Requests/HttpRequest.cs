@@ -67,7 +67,10 @@ namespace SIS.Http.Requests
 
         private void ParseRequestParameters(string bodyParameters, bool requestHasBody)
         {
-            this.ParseQueryParameters(this.Url);
+            if (this.Url.Contains("?"))
+            {
+                this.ParseQueryParameters(this.Url);
+            }
 
             if (requestHasBody)
             {
