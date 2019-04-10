@@ -10,6 +10,7 @@ using SIS.Http.Cookies.Contracts;
 using SIS.Http.Enum;
 using SIS.Http.Exceptions;
 using SIS.Http.Headers;
+using SIS.Http.Sessions;
 
 namespace SIS.Http.Requests
 {
@@ -41,6 +42,8 @@ namespace SIS.Http.Requests
         public IHttpCookieCollection Cookies { get; }
 
         public HttpRequestMethod RequestMethod { get; private set; }
+
+        public IHttpSession Session { get; set; }
 
 
         private void ParseRequest(string requestString)

@@ -3,9 +3,11 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using SIS.Http.Cookies;
 using SIS.Http.Requests;
 using SIS.Http.Responses;
 using SIS.Http.Responses.Contracts;
+using SIS.Http.Sessions;
 using SIS.WebServer.Routing;
 
 namespace SIS.WebServer
@@ -13,7 +15,10 @@ namespace SIS.WebServer
     public class ConnectionHandler
     {
         private Socket client;
+
         private ServerRoutingTable serverRoutingTable;
+
+        //private readonly HttpSessionStorage sessionStorage;
 
         public ConnectionHandler(Socket client, ServerRoutingTable serverRoutingTable)
         {
@@ -79,12 +84,44 @@ namespace SIS.WebServer
 
             if (httpRequest != null)
             {
+                string sessionId = this.SetRequestSession(httpRequest);
+
                 var httpResponse = this.HandleRequest(httpRequest);
+
+                this.SetResponseSession(httpResponse, sessionId);
+
                 await this.PrepareResponse(httpResponse);
             }
 
             this.client.Shutdown(SocketShutdown.Both);
 
+        }
+
+        private string SetRequestSession(IHttpRequest request)
+        {
+            string sessionId = null;
+
+            if (request.Cookies.ContainsCookie(HttpSessionStorage.SessionCookieKey))
+            {
+                var cookie = request.Cookies.GetCookie(HttpSessionStorage.SessionCookieKey);
+                sessionId = cookie.Value;
+                request.Session = HttpSessionStorage.GetSession(sessionId);
+            }
+            else
+            {
+                sessionId = Guid.NewGuid().ToString();
+                request.Session = HttpSessionStorage.GetSession(sessionId);
+            }
+
+            return sessionId;
+        }
+
+        private void SetResponseSession(IHttpResponse response, string sessionId)
+        {
+            if (sessionId != null)
+            {
+                response.AddCookie(new HttpCookie(HttpSessionStorage.SessionCookieKey, sessionId));
+            }
         }
     }
 }

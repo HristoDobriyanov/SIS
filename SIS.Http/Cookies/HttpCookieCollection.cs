@@ -29,7 +29,7 @@ namespace SIS.Http.Cookies
             //    throw new Exception();
             //}
 
-            this.cookies.Add(httpCookie.Key, httpCookie);
+            this.cookies[httpCookie.Key] =  httpCookie;
         }
 
         public HttpCookie GetCookie(string key)

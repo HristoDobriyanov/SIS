@@ -1,5 +1,7 @@
 ﻿using System.Net;
 using SIS.Http.Contracts;
+using SIS.Http.Cookies;
+using SIS.Http.Cookies.Contracts;
 using SIS.Http.Headers;
 
 namespace SIS.Http.Responses.Contracts
@@ -10,9 +12,13 @@ namespace SIS.Http.Responses.Contracts
 
         IHttpHeaderCollection Headers { get; }
 
+        IHttpCookieCollection Cookies { get; }
+
         byte[] Content { get; set; }
 
         void AddHeader(HttpHeader header);
+
+        void AddCookie(HttpCookie cookie); 
 
         byte[] GetBytes();
 

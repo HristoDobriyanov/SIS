@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using SIS.Http.Cookies.Contracts;
+using SIS.Http.Sessions;
 
 namespace SIS.Http.Requests
 {
@@ -22,5 +23,7 @@ namespace SIS.Http.Requests
         IHttpCookieCollection Cookies { get; }
 
         HttpRequestMethod RequestMethod { get; }
+
+        IHttpSession Session { get; set; }
     }
 }
