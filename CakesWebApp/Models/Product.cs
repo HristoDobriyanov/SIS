@@ -10,7 +10,7 @@ namespace CakesWebApp.Models
     {
         public Product()
         {
-            this.Orders = new HashSet<Order>();
+            this.Orders = new HashSet<OrderProduct>();
         }
 
         public string Name { get; set; }
@@ -19,7 +19,7 @@ namespace CakesWebApp.Models
 
         public string Url { get; set; }
 
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrderProduct> Orders { get; set; }
 
 
     }

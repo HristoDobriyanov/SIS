@@ -15,9 +15,13 @@ namespace CakesWebApp.Data
 
         public DbSet<Order> Orders{ get; set; }
 
+        public DbSet<OrderProduct> OrderProducts { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseLazyLoadingProxies();
+
             optionsBuilder.UseSqlServer(@"Server=DESKTOP-R4OGD90\SQLEXPRESS;
             Database=Cakes;
             Integrated Security=True");

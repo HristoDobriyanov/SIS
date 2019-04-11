@@ -10,7 +10,7 @@ namespace CakesWebApp.Models
     {
         public Order()
         {
-            this.Products = new HashSet<Product>();
+            this.Products = new HashSet<OrderProduct>();
         }
 
 
@@ -20,6 +20,6 @@ namespace CakesWebApp.Models
 
         public DateTime DateOfCreation { get; set; } = DateTime.UtcNow;
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<OrderProduct> Products { get; set; }
     }
 }
