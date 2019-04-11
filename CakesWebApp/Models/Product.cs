@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace CakesWebApp.Models
 {
-    class Product : BaseModel<int>
+    public class Product : BaseModel<int>
     {
-        private int Id { get; set; }
+        
     }
 }
