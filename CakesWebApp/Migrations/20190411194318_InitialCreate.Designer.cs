@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CakesWebApp.Migrations
 {
     [DbContext(typeof(CakesDbContext))]
-    [Migration("20190411193744_InitialCreate")]
+    [Migration("20190411194318_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

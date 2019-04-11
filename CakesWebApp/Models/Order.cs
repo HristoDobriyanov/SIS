@@ -1,12 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Principal;
 using System.Text;
 
 namespace CakesWebApp.Models
 {
     public class Order : BaseModel<int>
     {
-       
+        public Order()
+        {
+            this.Products = new HashSet<Product>();
+        }
+
+
+        public int UserId { get; set; }
+
+        public virtual User User { get; set; }
+
+        public DateTime DateOfCreation { get; set; } = DateTime.UtcNow;
+
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

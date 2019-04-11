@@ -18,7 +18,9 @@ namespace CakesWebApp.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-R4OGD90\SQLEXPRESS;Database=Cakes;Integrated_Security=True");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-R4OGD90\SQLEXPRESS;
+            Database=Cakes;
+            Integrated Security=True");
         }
     }
 }
