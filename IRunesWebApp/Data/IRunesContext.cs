@@ -20,8 +20,15 @@ namespace IRunesWebApp.Data
         {
             optionsBuilder.UseSqlServer(
                 @"Server=DESKTOP-R4OGD90\SQLEXPRESS;
-                                Database=IRunes;
+                                Database=IRunesApp;
                                 Integrated Security=true").UseLazyLoadingProxies();
+        }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TrackAlbum>()
+                .HasKey(ta => new { ta.AlbumId, ta.TrackId });
         }
     }
 }

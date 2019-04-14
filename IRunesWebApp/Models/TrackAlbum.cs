@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IRunesWebApp.Models
 {
-    public class TrackAlbum : BaseEntity<int>
+    public class TrackAlbum 
     {
         public string AlbumId { get; set; }
 
