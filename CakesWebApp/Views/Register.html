@@ -1,11 +1,20 @@
-﻿<!DOCTYPE html>
+﻿<h1>Register time!</h1>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+<form method="post" action="/register">
+    <div>
+        Username <input name="username" type="text" placeholder="Username"/>
+    </div>
 
-</body>
-</html>
+    <div>
+        Password <input name="password" type="password" placeholder="Password"/>
+    </div>
+
+    <div>
+        Confirm Password <input name="confirmPassword" type="password" placeholder="Confirm password"/>
+    </div>
+    
+    <div>
+        <input type="submit" value="register"/>
+    </div>
+
+</form>

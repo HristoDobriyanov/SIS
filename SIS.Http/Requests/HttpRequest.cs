@@ -215,6 +215,12 @@ namespace SIS.Http.Requests
         private void ExtractrRequestParameters(string[] parameterKeyValuePairs,
             Dictionary<string, object> parametersCollection)
         {
+            //new code
+            if (parameterKeyValuePairs.Length == 0)
+            {
+                return;
+            }
+
             foreach (var parametersKeyValuePair in parameterKeyValuePairs)
             {
                 var keyValuePair = parametersKeyValuePair.Split("=", StringSplitOptions.RemoveEmptyEntries);
@@ -225,9 +231,9 @@ namespace SIS.Http.Requests
                 }
 
                 var parameterKey = keyValuePair[0];
-                var parapmeterValue = keyValuePair[1];
+                var parameterValue = keyValuePair[1];
 
-                parametersCollection[parameterKey] = parapmeterValue;
+                parametersCollection[parameterKey] = parameterValue;
             }
         }
     }

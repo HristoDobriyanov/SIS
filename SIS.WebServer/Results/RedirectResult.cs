@@ -7,14 +7,12 @@ using SIS.Http.Responses;
 
 namespace SIS.WebServer.Results
 {
-    class RedirectResult : HttpResponse
+    public class RedirectResult : HttpResponse
     {
         public RedirectResult(string location)
             : base(HttpStatusCode.Redirect)
         {
             this.Headers.Add(new HttpHeader("Location", location));
-            
-
         }
     }
 }

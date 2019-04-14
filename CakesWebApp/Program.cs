@@ -12,7 +12,20 @@ namespace CakesWebApp
         {
             ServerRoutingTable serverRoutingTable = new ServerRoutingTable();
 
-            serverRoutingTable.Routes[HttpRequestMethod.GET]["/"] = request => new HomeController().Index(request);
+            serverRoutingTable.Routes[HttpRequestMethod.GET]["/"] = 
+                request => new HomeController().Index(request);
+
+            serverRoutingTable.Routes[HttpRequestMethod.GET]["/register"] = 
+                request => new AccountController().Register(request);
+
+            serverRoutingTable.Routes[HttpRequestMethod.GET]["/login"] = 
+                request => new AccountController().Login(request);
+
+            serverRoutingTable.Routes[HttpRequestMethod.POST]["/register"] =
+                request => new AccountController().DoRegister(request);
+
+            serverRoutingTable.Routes[HttpRequestMethod.POST]["/login"] =
+                request => new AccountController().DoLogin(request);
 
             Server server = new Server(80, serverRoutingTable);
 
