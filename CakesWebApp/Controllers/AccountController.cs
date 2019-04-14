@@ -9,6 +9,7 @@ using SIS.WebServer.Results;
 using System.Linq;
 using CakesWebApp.Models;
 using CakesWebApp.Services;
+using SIS.Http.Cookies;
 
 
 namespace CakesWebApp.Controllers
@@ -16,11 +17,14 @@ namespace CakesWebApp.Controllers
     class AccountController : BaseController
     {
         private IHashService hashService;
+        
 
 
         public AccountController()
         {
            this.hashService = new HashService();   
+         
+           
         }
 
 
@@ -96,7 +100,12 @@ namespace CakesWebApp.Controllers
                 return this.BadRequestError("Username or password incorrect.");
             }
 
-            return new RedirectResult("/");
+            var response = new RedirectResult("/");
+            var cookieContent = this.userCookieService.GetUserCookie(user.Username);
+
+            response.Cookies.Add(new HttpCookie(".auth-cakes", cookieContent, 7));
+
+            return response;
         }
     }
 }

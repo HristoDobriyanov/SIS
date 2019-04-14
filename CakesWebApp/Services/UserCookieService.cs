@@ -8,15 +8,20 @@ namespace CakesWebApp.Services
 {
     public class UserCookieService : IuserCookieService
     {
-        public const string EncryptKey = "365E735E-F80C-4E55-A0FC-26CAFC460BBB__9F1D151C-2A44-4E37-9A76-437492CE2D50";
+        public const string EncryptKey = "E646C8DF278CD5931069B522E695D4F2";
 
 
         public string GetUserCookie(string userName)
         {
-            var cookieContent = EncryptKey(userName, EncryptKey);
+            return  EncryptString(userName, EncryptKey);
         }
 
-        public static string EncryptString(string text, string keyString)
+        public string GetUserData(string cookieContent)
+        {
+            return DecryptString(cookieContent, EncryptKey);
+        }
+
+        public  string EncryptString(string text, string keyString)
         {
             var key = Encoding.UTF8.GetBytes(keyString);
 
@@ -84,6 +89,6 @@ namespace CakesWebApp.Services
     {
         string GetUserCookie(string userName);
 
-        string GetUserData(string cookieContent);
+        string GetUserData(string cookieContetnt);
     }
 }
