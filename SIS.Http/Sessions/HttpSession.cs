@@ -1,55 +1,44 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace SIS.Http.Sessions
+namespace SIS.HTTP.Sessions
 {
+    using Common;
+
     public class HttpSession : IHttpSession
     {
-        private readonly IDictionary<string,object> parameters;
+        private readonly Dictionary<string, object> sessionParameters;
 
-        public HttpSession(string Id)
+        public HttpSession(string id)
         {
-            this.Id = Id;
-            this.parameters = new Dictionary<string, object>();
+            CoreValidator.ThrowIfNull(id, nameof(id));
+            this.Id = id;
+            this.sessionParameters = new Dictionary<string, object>();
         }
 
         public string Id { get; }
 
-        public object GetParameter(string key)
+        public object GetParameter(string name)
         {
-            if (string.IsNullOrEmpty(key))
-            {
-                throw new ArgumentNullException();
-            }
-
-            if (!this.ContainsParameter(key))
-            {
-                return null;
-            }
-
-            return this.parameters[key];
-
+            CoreValidator.ThrowIfNullOrEmpty(name, nameof(name));
+            return this.sessionParameters.GetValueOrDefault(name, null);
         }
 
-        public bool ContainsParameter(string key)
+        public bool ContainsParameter(string name)
         {
-            return this.parameters.ContainsKey(key);
+            CoreValidator.ThrowIfNullOrEmpty(name, nameof(name));
+            return this.sessionParameters.ContainsKey(name);
         }
 
         public void AddParameter(string name, object parameter)
         {
-            if (ContainsParameter(name))
-            {
-                throw new ArgumentException();
-            }
-
-            this.parameters[name] = parameter;
+            CoreValidator.ThrowIfNullOrEmpty(name, nameof(name));
+            CoreValidator.ThrowIfNull(parameter, nameof(parameter));
+            this.sessionParameters.Add(name, parameter);
         }
 
         public void ClearParameters()
         {
-            this.parameters.Clear();
+            this.sessionParameters.Clear();
         }
     }
 }

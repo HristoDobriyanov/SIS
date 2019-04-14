@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
-using SIS.Http.Headers;
-using SIS.Http.Responses;
+﻿using SIS.HTTP.Enums;
+using SIS.HTTP.Headers;
+using SIS.HTTP.Responses;
 
 namespace SIS.WebServer.Results
 {
     public class RedirectResult : HttpResponse
     {
-        public RedirectResult(string location)
-            : base(HttpStatusCode.Redirect)
+        public RedirectResult(string location) 
+            : base(HttpResponseStatusCode.SeeOther)
         {
-            this.Headers.Add(new HttpHeader("Location", location));
+            this.Headers.Add(new HttpHeader(HttpHeader.Location, location));
         }
     }
 }

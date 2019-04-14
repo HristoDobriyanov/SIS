@@ -1,17 +1,17 @@
 ﻿using System;
-using SIS.Http.Enum;
+using SIS.HTTP.Enums;
 using SIS.WebServer;
 using SIS.WebServer.Routing;
 
 namespace SIS.Demo
 {
-    public class Launcher
+    class Launcher
     {
-        static void Main(string[] Args)
+        static void Main(string[] args)
         {
             ServerRoutingTable serverRoutingTable = new ServerRoutingTable();
 
-            serverRoutingTable.Routes[HttpRequestMethod.GET]["/"] = request => new HomeController().Index();
+            serverRoutingTable.Routes[HttpRequestMethod.Get]["/"] = request => new HomeController().Index(request);
 
             Server server = new Server(8000, serverRoutingTable);
 

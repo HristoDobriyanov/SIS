@@ -1,17 +1,17 @@
 ﻿using System.Collections.Concurrent;
 
-namespace SIS.Http.Sessions
+namespace SIS.HTTP.Sessions
 {
     public class HttpSessionStorage
     {
         public const string SessionCookieKey = "SIS_ID";
 
-        private static readonly ConcurrentDictionary<string, IHttpSession> sessions =
-            new ConcurrentDictionary<string, IHttpSession>();
+        private static readonly ConcurrentDictionary<string, IHttpSession> sessions 
+            = new ConcurrentDictionary<string, IHttpSession>();
 
-        public static IHttpSession GetSession(string Id)
+        public static IHttpSession GetSession(string id)
         {
-            return sessions.GetOrAdd(Id, _ => new HttpSession(Id));
-        } 
+            return sessions.GetOrAdd(id, _ => new HttpSession(id));
+        }
     }
 }
