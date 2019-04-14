@@ -6,7 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SIS.HTTP\SIS.HTTP.csproj" />
+    <PackageReference Include="microsoft.entityframeworkcore.proxies" Version="2.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SIS.Demo\SIS.Demo.csproj" />
     <ProjectReference Include="..\SIS.WebServer\SIS.WebServer.csproj" />
   </ItemGroup>
 
