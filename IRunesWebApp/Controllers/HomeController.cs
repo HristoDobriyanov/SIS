@@ -8,11 +8,11 @@ using System.Text;
 
 namespace IRunesWebApp.Controllers
 {
-    class HomeController
+    class HomeController : BaseController
     {
         public IHttpResponse Index(IHttpRequest request)
         {
-            string content = "<h1>Hello, World!</h1>";
+            string content = "";
 
             return new HtmlResult(content, HttpResponseStatusCode.Ok);
         } 
