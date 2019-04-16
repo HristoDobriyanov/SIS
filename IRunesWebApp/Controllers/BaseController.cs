@@ -41,9 +41,9 @@ namespace IRunesWebApp.Controllers
 
             var fileContent = File.ReadAllText(filePath);
 
-            return new HtmlResult(fileContent, HttpResponseStatusCode.Ok);
+            var response = new HtmlResult(fileContent, HttpResponseStatusCode.Ok);
 
+            return response;
         }
-
     }
 }

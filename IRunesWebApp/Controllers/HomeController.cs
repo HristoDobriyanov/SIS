@@ -10,11 +10,7 @@ namespace IRunesWebApp.Controllers
 {
     class HomeController : BaseController
     {
-        public IHttpResponse Index(IHttpRequest request)
-        {
-            string content = "";
+        public IHttpResponse Index(IHttpRequest request) => this.View();
 
-            return new HtmlResult(content, HttpResponseStatusCode.Ok);
-        } 
     }
 }
