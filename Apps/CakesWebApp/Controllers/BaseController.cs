@@ -49,6 +49,12 @@ namespace CakesWebApp.Controllers
         {
             var layoutContent = File.ReadAllText("Views/_Layout.html");
             var content = File.ReadAllText("Views/" + viewName + ".html");
+
+            foreach (var item in viewBag)
+            {
+                content = content.Replace("@Model." + item.Key, item.Value);
+            }
+
             var allContent = layoutContent.Replace("@RenderBody()", content);
             return allContent;
         }
