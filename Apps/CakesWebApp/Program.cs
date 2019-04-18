@@ -29,6 +29,8 @@ namespace CakesWebApp
                 new AccountController().Logout(request);
             serverRoutingTable.Routes[HttpRequestMethod.Get]["/cakes/add"] = request =>
                 new CakesController().AddCakes(request);
+            serverRoutingTable.Routes[HttpRequestMethod.Post]["/cakes/add"] = request =>
+                new CakesController().DoAddCakes(request);
 
 
             Server server = new Server(80, serverRoutingTable);
