@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata;
-using System.Text;
+using System.Globalization;
+using System.Linq;
+using CakesWebApp.Extensions;
 using CakesWebApp.Models;
-using SIS.HTTP.Exceptions;
 using SIS.HTTP.Requests;
 using SIS.HTTP.Responses;
 using SIS.WebServer.Results;
@@ -19,13 +19,11 @@ namespace CakesWebApp.Controllers
 
         public IHttpResponse DoAddCakes(IHttpRequest request)
         {
-            var name = request.FormData["name"].ToString().Trim();
-            var price = decimal.Parse(request.FormData["price"].ToString().Trim());
-            var picture = request.FormData["name"].ToString().Trim();
+            var name = request.FormData["name"].ToString().Trim().UrlDecode();
+            var price = decimal.Parse(request.FormData["price"].ToString().UrlDecode());
+            var picture = request.FormData["picture"].ToString().Trim().UrlDecode();
 
-
-            //TODO: Validation
-
+            // TODO: Validation
 
             var product = new Product
             {
@@ -33,7 +31,6 @@ namespace CakesWebApp.Controllers
                 Price = price,
                 ImageUrl = picture
             };
-
             this.Db.Products.Add(product);
 
             try
@@ -42,13 +39,30 @@ namespace CakesWebApp.Controllers
             }
             catch (Exception e)
             {
+                // TODO: Log error
                 return this.ServerError(e.Message);
             }
 
-            //Redirect
+            // Redirect
             return new RedirectResult("/");
-
         }
 
+        public IHttpResponse ById(IHttpRequest request)
+        {
+            var id = int.Parse(request.QueryData["id"].ToString());
+            var product = this.Db.Products.FirstOrDefault(x => x.Id == id);
+            if (product == null)
+            {
+                return this.BadRequestError("Cake not found.");
+            }
+
+            var viewBag = new Dictionary<string, string>
+            {
+                {"Name", product.Name},
+                {"Price", product.Price.ToString(CultureInfo.InvariantCulture)},
+                {"ImageUrl", product.ImageUrl}
+            };
+            return this.View("CakeById", viewBag);
+        }
     }
 }

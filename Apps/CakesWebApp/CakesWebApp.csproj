@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Views\CakeById.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Views\Error.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

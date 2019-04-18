@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using CakesWebApp.Data;
 using CakesWebApp.Services;
-using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using SIS.HTTP.Enums;
 using SIS.HTTP.Requests;
 using SIS.HTTP.Responses;
@@ -20,8 +20,7 @@ namespace CakesWebApp.Controllers
         }
 
         protected CakesDbContext Db { get; }
-
-
+        
         protected IUserCookieService UserCookieService { get; }
 
         protected string GetUsername(IHttpRequest request)
@@ -38,25 +37,15 @@ namespace CakesWebApp.Controllers
 
         }
 
-        protected IHttpResponse View(string viewName)
+        protected IHttpResponse View(string viewName, IDictionary<string, string> viewBag = null)
         {
-            var allContent = this.GetViewContent(viewName, new Dictionary<string, string>());
-
-            return new HtmlResult(allContent, HttpResponseStatusCode.Ok);
-        }
-
-        private string GetViewContent(string viewName, IDictionary<string, string> viewBag)
-        {
-            var layoutContent = File.ReadAllText("Views/_Layout.html");
-            var content = File.ReadAllText("Views/" + viewName + ".html");
-
-            foreach (var item in viewBag)
+            if (viewBag == null)
             {
-                content = content.Replace("@Model." + item.Key, item.Value);
+                viewBag = new Dictionary<string, string>();
             }
 
-            var allContent = layoutContent.Replace("@RenderBody()", content);
-            return allContent;
+            var allContent = this.GetViewContent(viewName, viewBag);
+            return new HtmlResult(allContent, HttpResponseStatusCode.Ok);
         }
 
         protected IHttpResponse BadRequestError(string errorMessage)
@@ -75,6 +64,20 @@ namespace CakesWebApp.Controllers
             var allContent = this.GetViewContent("Error", viewBag);
 
             return new HtmlResult(allContent, HttpResponseStatusCode.InternalServerError);
+        }
+
+        private string GetViewContent(string viewName, 
+            IDictionary<string, string> viewBag)
+        {
+            var layoutContent = File.ReadAllText("Views/_Layout.html");
+            var content = File.ReadAllText("Views/" + viewName + ".html");
+            foreach (var item in viewBag)
+            {
+                content = content.Replace("@Model." + item.Key, item.Value);
+            }
+
+            var allContent = layoutContent.Replace("@RenderBody()", content);
+            return allContent;
         }
     }
 }

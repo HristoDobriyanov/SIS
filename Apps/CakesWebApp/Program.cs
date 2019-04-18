@@ -31,7 +31,9 @@ namespace CakesWebApp
                 new CakesController().AddCakes(request);
             serverRoutingTable.Routes[HttpRequestMethod.Post]["/cakes/add"] = request =>
                 new CakesController().DoAddCakes(request);
-
+            // cakes/view?id=1
+            serverRoutingTable.Routes[HttpRequestMethod.Get]["/cakes/view"] = request =>
+                new CakesController().ById(request);
 
             Server server = new Server(80, serverRoutingTable);
 
