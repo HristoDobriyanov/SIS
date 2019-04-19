@@ -11,7 +11,6 @@ namespace SIS.WebServer
     using HTTP.Requests;
     using HTTP.Responses;
     using HTTP.Sessions;
-    using Results;
     using Routing;
 
     public class ConnectionHandler

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using SIS.HTTP.Enums;
+using SIS.HTTP.Headers;
 using SIS.HTTP.Requests;
 using SIS.HTTP.Responses;
-using SIS.WebServer.Results;
 using SISMvcFramework.Services;
 
 namespace SISMvcFramework
@@ -16,12 +16,16 @@ namespace SISMvcFramework
         public Controller()
         {
             this.UserCookieService = new UserCookieService();
+            this.Response = new HttpResponse();
+            this.Response.StatusCode = HttpResponseStatusCode.Ok;
         }
 
 
         protected IUserCookieService UserCookieService { get; }
 
         public IHttpRequest Request { get; set; }
+
+        public IHttpResponse Response { get; set; }
 
         protected string GetUsername()
         {
@@ -45,8 +49,35 @@ namespace SISMvcFramework
             }
 
             var allContent = this.GetViewContent(viewName, viewBag);
-            return new HtmlResult(allContent, HttpResponseStatusCode.Ok);
+            this.PrepareHtmlResult(allContent);
+
+            return this.Response;
         }
+
+        protected IHttpResponse File(byte[] content)
+        {
+            this.Response.Headers.Add(new HttpHeader(HttpHeader.ContentLength, content.Length.ToString()));
+            this.Response.Headers.Add(new HttpHeader(HttpHeader.ContentDisposition, "inline"));
+            this.Response.Content = content;
+            return this.Response;
+        }
+
+        protected IHttpResponse Redirect(string location)
+        {
+            this.Response.Headers.Add(new HttpHeader(HttpHeader.Location, location));
+            this.Response.StatusCode = HttpResponseStatusCode.Redirect;
+            return this.Response;
+        }
+
+        protected IHttpResponse Text(string content)
+        {
+            this.Response.Headers.Add(new HttpHeader(HttpHeader.ContentType, "text/plain; charset=utf-8"));
+            this.Response.Content = Encoding.UTF8.GetBytes(content);
+           
+            return this.Response;
+        }
+
+
 
         protected IHttpResponse BadRequestError(string errorMessage)
         {
@@ -78,6 +109,13 @@ namespace SISMvcFramework
 
             var allContent = layoutContent.Replace("@RenderBody()", content);
             return allContent;
+        }
+
+        private void PrepareHtmlResult(string content)
+        {
+            this.Response.Headers.Add(new HttpHeader(HttpHeader.ContentType, "text/html; charset=utf-8"));
+            this.Response.StatusCode = HttpResponseStatusCode.Ok;
+            this.Response.Content = Encoding.UTF8.GetBytes(content);
         }
     }
 }
