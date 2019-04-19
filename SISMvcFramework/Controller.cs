@@ -12,21 +12,25 @@ namespace SISMvcFramework
 {
     public class Controller
     {
-        protected IUserCookieService UserCookieService { get; }
 
         public Controller()
         {
             this.UserCookieService = new UserCookieService();
         }
 
-        protected string GetUsername(IHttpRequest request)
+
+        protected IUserCookieService UserCookieService { get; }
+
+        public IHttpRequest Request { get; set; }
+
+        protected string GetUsername()
         {
-            if (!request.Cookies.ContainsCookie(".auth-cakes"))
+            if (!this.Request.Cookies.ContainsCookie(".auth-cakes"))
             {
                 return null;
             }
 
-            var cookie = request.Cookies.GetCookie(".auth-cakes");
+            var cookie = this.Request.Cookies.GetCookie(".auth-cakes");
             var cookieContent = cookie.Value;
             var userName = this.UserCookieService.GetUserData(cookieContent);
             return userName;
