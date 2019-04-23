@@ -727,9 +727,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HRI\\Documents\\GitHub\\SIS\\SISMvcFramework\\SISMvcFramework.csproj",
-      "projectName": "SISMvcFramework",
-      "projectPath": "C:\\Users\\HRI\\Documents\\GitHub\\SIS\\SISMvcFramework\\SISMvcFramework.csproj",
+      "projectUniqueName": "C:\\Users\\HRI\\Documents\\GitHub\\SIS\\SISMvcFramework\\SIS.MvcFramework.csproj",
+      "projectName": "SIS.MvcFramework",
+      "projectPath": "C:\\Users\\HRI\\Documents\\GitHub\\SIS\\SISMvcFramework\\SIS.MvcFramework.csproj",
       "packagesPath": "C:\\Users\\HRI\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\HRI\\Documents\\GitHub\\SIS\\SISMvcFramework\\obj\\",
       "projectStyle": "PackageReference",

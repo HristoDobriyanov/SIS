@@ -12,8 +12,6 @@ C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\bin\Debug\netcoreapp2.2\Cakes
 C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\bin\Debug\netcoreapp2.2\CakesWebApp.pdb
 C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\bin\Debug\netcoreapp2.2\SIS.HTTP.dll
 C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\bin\Debug\netcoreapp2.2\SIS.WebServer.dll
-C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\bin\Debug\netcoreapp2.2\SISMvcFramework.dll
-C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\bin\Debug\netcoreapp2.2\SISMvcFramework.pdb
 C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\bin\Debug\netcoreapp2.2\SIS.HTTP.pdb
 C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\bin\Debug\netcoreapp2.2\SIS.WebServer.pdb
 C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\obj\Debug\netcoreapp2.2\CakesWebApp.csprojAssemblyReference.cache
@@ -24,3 +22,5 @@ C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\obj\Debug\netcoreapp2.2\Cakes
 C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\obj\Debug\netcoreapp2.2\CakesWebApp.dll
 C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\obj\Debug\netcoreapp2.2\CakesWebApp.pdb
 C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\bin\Debug\netcoreapp2.2\Views\HelloUser.html
+C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\bin\Debug\netcoreapp2.2\SIS.MvcFramework.dll
+C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\bin\Debug\netcoreapp2.2\SIS.MvcFramework.pdb

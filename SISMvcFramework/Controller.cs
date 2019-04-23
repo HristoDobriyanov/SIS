@@ -21,25 +21,28 @@ namespace SISMvcFramework
         }
 
 
-        protected IUserCookieService UserCookieService { get; }
 
         public IHttpRequest Request { get; set; }
 
         public IHttpResponse Response { get; set; }
 
-        protected string GetUsername()
+        protected string User
         {
-            if (!this.Request.Cookies.ContainsCookie(".auth-cakes"))
+            get
             {
-                return null;
+                if (!this.Request.Cookies.ContainsCookie(".auth-cakes"))
+                {
+                    return null;
+                }
+
+                var cookie = this.Request.Cookies.GetCookie(".auth-cakes");
+                var cookieContent = cookie.Value;
+                var userName = this.UserCookieService.GetUserData(cookieContent);
+                return userName;
             }
-
-            var cookie = this.Request.Cookies.GetCookie(".auth-cakes");
-            var cookieContent = cookie.Value;
-            var userName = this.UserCookieService.GetUserData(cookieContent);
-            return userName;
-
         }
+
+        protected IUserCookieService UserCookieService { get; }
 
         protected IHttpResponse View(string viewName, IDictionary<string, string> viewBag = null)
         {
@@ -65,7 +68,7 @@ namespace SISMvcFramework
         protected IHttpResponse Redirect(string location)
         {
             this.Response.Headers.Add(new HttpHeader(HttpHeader.Location, location));
-            this.Response.StatusCode = HttpResponseStatusCode.Redirect;
+            this.Response.StatusCode = HttpResponseStatusCode.SeeOther; //TODO: Found works better?
             return this.Response;
         }
 
@@ -73,7 +76,7 @@ namespace SISMvcFramework
         {
             this.Response.Headers.Add(new HttpHeader(HttpHeader.ContentType, "text/plain; charset=utf-8"));
             this.Response.Content = Encoding.UTF8.GetBytes(content);
-           
+
             return this.Response;
         }
 

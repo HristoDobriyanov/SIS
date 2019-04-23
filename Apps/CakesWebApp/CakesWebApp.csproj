@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SISMvcFramework\SISMvcFramework.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Views\CakeById.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -44,6 +40,10 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\SISMvcFramework\SIS.MvcFramework.csproj" />
   </ItemGroup>
 
 </Project>

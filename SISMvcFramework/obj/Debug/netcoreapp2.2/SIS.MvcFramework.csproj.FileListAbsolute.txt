@@ -1,0 +1,14 @@
+C:\Users\HRI\Documents\GitHub\SIS\SISMvcFramework\bin\Debug\netcoreapp2.2\SIS.MvcFramework.deps.json
+C:\Users\HRI\Documents\GitHub\SIS\SISMvcFramework\bin\Debug\netcoreapp2.2\SIS.MvcFramework.dll
+C:\Users\HRI\Documents\GitHub\SIS\SISMvcFramework\bin\Debug\netcoreapp2.2\SIS.MvcFramework.pdb
+C:\Users\HRI\Documents\GitHub\SIS\SISMvcFramework\bin\Debug\netcoreapp2.2\SIS.HTTP.dll
+C:\Users\HRI\Documents\GitHub\SIS\SISMvcFramework\bin\Debug\netcoreapp2.2\SIS.WebServer.dll
+C:\Users\HRI\Documents\GitHub\SIS\SISMvcFramework\bin\Debug\netcoreapp2.2\SIS.HTTP.pdb
+C:\Users\HRI\Documents\GitHub\SIS\SISMvcFramework\bin\Debug\netcoreapp2.2\SIS.WebServer.pdb
+C:\Users\HRI\Documents\GitHub\SIS\SISMvcFramework\obj\Debug\netcoreapp2.2\SIS.MvcFramework.csprojAssemblyReference.cache
+C:\Users\HRI\Documents\GitHub\SIS\SISMvcFramework\obj\Debug\netcoreapp2.2\SIS.MvcFramework.csproj.CoreCompileInputs.cache
+C:\Users\HRI\Documents\GitHub\SIS\SISMvcFramework\obj\Debug\netcoreapp2.2\SIS.MvcFramework.AssemblyInfoInputs.cache
+C:\Users\HRI\Documents\GitHub\SIS\SISMvcFramework\obj\Debug\netcoreapp2.2\SIS.MvcFramework.AssemblyInfo.cs
+C:\Users\HRI\Documents\GitHub\SIS\SISMvcFramework\obj\Debug\netcoreapp2.2\SIS.MvcFramework.csproj.CopyComplete
+C:\Users\HRI\Documents\GitHub\SIS\SISMvcFramework\obj\Debug\netcoreapp2.2\SIS.MvcFramework.dll
+C:\Users\HRI\Documents\GitHub\SIS\SISMvcFramework\obj\Debug\netcoreapp2.2\SIS.MvcFramework.pdb

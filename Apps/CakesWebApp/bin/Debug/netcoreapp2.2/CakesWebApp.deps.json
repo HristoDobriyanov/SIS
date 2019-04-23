@@ -11,7 +11,7 @@
           "Microsoft.EntityFrameworkCore.Design": "2.1.4",
           "Microsoft.EntityFrameworkCore.Proxies": "2.1.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.4",
-          "SISMvcFramework": "1.0.0"
+          "SIS.MvcFramework": "1.0.0"
         },
         "runtime": {
           "CakesWebApp.dll": {}
@@ -742,21 +742,21 @@
           "SIS.HTTP.dll": {}
         }
       },
+      "SIS.MvcFramework/1.0.0": {
+        "dependencies": {
+          "SIS.HTTP": "1.0.0",
+          "SIS.WebServer": "1.0.0"
+        },
+        "runtime": {
+          "SIS.MvcFramework.dll": {}
+        }
+      },
       "SIS.WebServer/1.0.0": {
         "dependencies": {
           "SIS.HTTP": "1.0.0"
         },
         "runtime": {
           "SIS.WebServer.dll": {}
-        }
-      },
-      "SISMvcFramework/1.0.0": {
-        "dependencies": {
-          "SIS.HTTP": "1.0.0",
-          "SIS.WebServer": "1.0.0"
-        },
-        "runtime": {
-          "SISMvcFramework.dll": {}
         }
       }
     }
@@ -1297,12 +1297,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "SIS.WebServer/1.0.0": {
+    "SIS.MvcFramework/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "SISMvcFramework/1.0.0": {
+    "SIS.WebServer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
