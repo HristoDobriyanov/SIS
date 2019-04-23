@@ -23,3 +23,4 @@ C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\obj\Debug\netcoreapp2.2\Cakes
 C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\obj\Debug\netcoreapp2.2\CakesWebApp.csproj.CopyComplete
 C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\obj\Debug\netcoreapp2.2\CakesWebApp.dll
 C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\obj\Debug\netcoreapp2.2\CakesWebApp.pdb
+C:\Users\HRI\Documents\GitHub\SIS\Apps\CakesWebApp\bin\Debug\netcoreapp2.2\Views\HelloUser.html

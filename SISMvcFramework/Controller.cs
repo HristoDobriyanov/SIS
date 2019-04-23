@@ -85,7 +85,9 @@ namespace SISMvcFramework
             viewBag.Add("Error", errorMessage);
             var allContent = this.GetViewContent("Error", viewBag);
 
-            return new HtmlResult(allContent, HttpResponseStatusCode.BadRequest);
+            this.PrepareHtmlResult(allContent);
+            this.Response.StatusCode = HttpResponseStatusCode.BadRequest;
+            return this.Response;
         }
 
         protected IHttpResponse ServerError(string errorMessage)
@@ -94,14 +96,16 @@ namespace SISMvcFramework
             viewBag.Add("Error", errorMessage);
             var allContent = this.GetViewContent("Error", viewBag);
 
-            return new HtmlResult(allContent, HttpResponseStatusCode.InternalServerError);
+            this.PrepareHtmlResult(allContent);
+            this.Response.StatusCode = HttpResponseStatusCode.InternalServerError;
+            return this.Response;
         }
 
         private string GetViewContent(string viewName,
             IDictionary<string, string> viewBag)
         {
-            var layoutContent = File.ReadAllText("Views/_Layout.html");
-            var content = File.ReadAllText("Views/" + viewName + ".html");
+            var layoutContent = System.IO.File.ReadAllText("Views/_Layout.html");
+            var content = System.IO.File.ReadAllText("Views/" + viewName + ".html");
             foreach (var item in viewBag)
             {
                 content = content.Replace("@Model." + item.Key, item.Value);
