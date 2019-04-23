@@ -1,10 +1,14 @@
 ﻿using System;
+using CakesWebApp.Data;
+using Microsoft.EntityFrameworkCore.Internal;
+using SIS.HTTP.Enums;
+using SIS.HTTP.Requests;
 using SIS.HTTP.Responses;
 using System.Linq;
 using CakesWebApp.Models;
 using SIS.HTTP.Cookies;
 using SIS.MvcFramework;
-using SISMvcFramework.Services;
+using SIS.MvcFramework.Services;
 
 namespace CakesWebApp.Controllers
 {
@@ -104,7 +108,6 @@ namespace CakesWebApp.Controllers
 
             var cookieContent = this.UserCookieService.GetUserCookie(user.Username);
 
-            
             var cookie = new HttpCookie(".auth-cakes", cookieContent, 7) { HttpOnly = true };
             this.Response.Cookies.Add(cookie);
             return this.Redirect("/");

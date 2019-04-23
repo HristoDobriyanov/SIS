@@ -1,10 +1,10 @@
-﻿using SIS.MvcFramework;
-
-namespace CakesWebApp
+﻿namespace CakesWebApp
 {
-    class Program
+    using SIS.MvcFramework;
+
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             WebHost.Start(new Startup());
         }

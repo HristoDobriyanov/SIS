@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SIS.HTTP.Enums;
+using SIS.HTTP.Requests;
 using SIS.HTTP.Responses;
 using SIS.MvcFramework;
 
@@ -16,11 +17,11 @@ namespace CakesWebApp.Controllers
         [HttpGet("/hello")]
         public IHttpResponse HelloUser()
         {
-            return this.View("HelloUser", new Dictionary<string, string>
-                    {
-                        { "Username", this.User}
-                    }
-                );
+            return this.View("HelloUser", new
+                Dictionary<string, string>
+                {
+                    {"Username", this.User}
+                });
         }
     }
 }

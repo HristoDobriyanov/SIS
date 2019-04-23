@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using CakesWebApp.Extensions;
 using CakesWebApp.Models;
+using SIS.HTTP.Requests;
 using SIS.HTTP.Responses;
 using SIS.MvcFramework;
 
@@ -11,7 +12,6 @@ namespace CakesWebApp.Controllers
 {
     public class CakesController : BaseController
     {
-
         [HttpGet("/cakes/add")]
         public IHttpResponse AddCakes()
         {
@@ -49,6 +49,7 @@ namespace CakesWebApp.Controllers
             return this.Redirect("/");
         }
 
+        // cakes/view?id=1
         [HttpGet("/cakes/view")]
         public IHttpResponse ById()
         {
