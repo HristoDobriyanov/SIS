@@ -4,6 +4,7 @@ using System.Reflection;
 using SIS.HTTP.Enums;
 using SIS.HTTP.Requests;
 using SIS.HTTP.Responses;
+using SIS.MvcFramework.Services;
 using SIS.WebServer;
 using SIS.WebServer.Results;
 using SIS.WebServer.Routing;
@@ -14,7 +15,8 @@ namespace SIS.MvcFramework
     {
         public static void Start(IMvcApplication application)
         {
-            application.ConfigureServices();
+            var dependencyContainer = new ServiceCollection();
+            application.ConfigureServices(dependencyContainer);
 
             var serverRoutingTable = new ServerRoutingTable();
             AutoRegisterRoutes(serverRoutingTable, application);
