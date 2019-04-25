@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SIS.MvcFramework.Services
 {
@@ -14,8 +15,42 @@ namespace SIS.MvcFramework.Services
         }
 
         public void AddService<TSource, TDestination>()
-        { 
+        {
+            dependencyContainer[typeof(TSource)] = typeof(TDestination);
+        }
 
+        public T CreateInstance<T>()
+        {
+            return (T)CreateInstance(typeof(T));
+        }
+
+
+
+
+        private object CreateInstance(Type type)
+        {
+            
+            if (dependencyContainer.ContainsKey(type))
+            {
+                type = dependencyContainer[type];
+            }
+            
+
+            if (type.IsInterface || type.IsAbstract)
+            {
+                throw new Exception($"Type {type.FullName} cannot be instantiated.");
+            }
+
+            var constructor = type.GetConstructors().FirstOrDefault();
+
+            var constructorParameters = constructor.GetParameters();
+
+            var constructorParametersObjects = new List<object>();
+
+            foreach (var constructorParameter in constructorParameters)
+            {
+                var parameterObject = this.CreateInstance(constructorParameter.ParameterType);
+            }
         }
     }
 }
