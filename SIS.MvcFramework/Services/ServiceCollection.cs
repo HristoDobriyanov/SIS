@@ -41,7 +41,7 @@ namespace SIS.MvcFramework.Services
                 throw new Exception($"Type {type.FullName} cannot be instantiated.");
             }
 
-            var constructor = type.GetConstructors().FirstOrDefault();
+            var constructor = type.GetConstructors().First();
 
             var constructorParameters = constructor.GetParameters();
 
@@ -50,7 +50,12 @@ namespace SIS.MvcFramework.Services
             foreach (var constructorParameter in constructorParameters)
             {
                 var parameterObject = this.CreateInstance(constructorParameter.ParameterType);
+                constructorParametersObjects.Add(parameterObject);
             }
+
+            var obj = constructor.Invoke(constructorParametersObjects.ToArray());
+            return obj;
+
         }
     }
 }
