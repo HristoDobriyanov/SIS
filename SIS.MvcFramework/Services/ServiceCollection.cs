@@ -23,11 +23,9 @@ namespace SIS.MvcFramework.Services
         {
             return (T)CreateInstance(typeof(T));
         }
+        
 
-
-
-
-        private object CreateInstance(Type type)
+        public object CreateInstance(Type type)
         {
             
             if (dependencyContainer.ContainsKey(type))
